@@ -1,0 +1,60 @@
+<style>
+  body {
+    background: #003050;
+    color: white;
+  }
+  textarea {
+    color: white;
+    border: none; 
+  }
+  a.replays > div{
+    display: none;
+  }
+  a.replays:hover > div{
+    display: block;
+  }
+  .replays{
+    font-size: 11px;
+  }
+  td{
+    border: none;
+  }
+  .comment{
+    padding: 5px;
+    margin-top: 10px;
+    border: 2px solid #555555;
+    border-radius: 10px;
+  }
+
+</style>
+<div>
+  <h2>Hello from <u>Leleglish</u> fun Project!</h2>
+  <div>
+    <%= comments = LeleglishWeb.LeleglishController.get_video_comments(@conn.params["video_id"]); nil %> 
+    <%= for %{text: top_level_comment, time: time, link: link, comment_url: comment_url, author_name: author_name, author_profile_image_url: author_profile_image_url, replays: replays } <- comments do %>
+      <div class="comment"> 
+        <table>
+          <tr>
+            <td><img src="<%= author_profile_image_url %>"/> </td>
+            <td><%= author_name %><br><a href="<%= link %>"><%= time %></a><br></td>
+            <td>
+              <a href="<%= comment_url %>">evidence comment</a>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <textarea><%= top_level_comment %></textarea>
+              <a class="replays"> replays 
+                <div>
+                <%= for replay <- replays do %>
+                  <%= replay %>  <br>------------ <br>
+                <%= end %>
+                </div>
+              </a>
+            </td>
+          </tr>
+        </table>
+      </div> 
+    <%= end %>
+  </div>
+</div>
