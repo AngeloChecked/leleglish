@@ -26,7 +26,12 @@ GOOGLE_API_KEY=<your_google_token>
 for more information about fly.io deployment:
 https://fly.io/docs/getting-started/elixir/
 
+dependencies:
+- elixir
+- node 
 
 ```
-http://localhost/?video_id=<your_video_id> 
+mix dep.get
+mix phx.server
+#navigate to http://localhost/?video_id=<your_account_video_id> 
 ```
